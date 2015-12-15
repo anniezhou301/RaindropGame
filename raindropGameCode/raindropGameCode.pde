@@ -1,9 +1,9 @@
 PVector mouse;   //declare a P
 Raindrop r;      //declare a new Raindrop called r
-int count = 50;
+int count = 5;
 int score = 0;
 int wid= 100;
-int hei = 15;
+int hei = 45;
 Raindrop[] drops = new Raindrop[count];
 // On your own, create an array of Raindrop objects instead of just one
 // Use the array instead of the single object
@@ -23,7 +23,7 @@ void draw() {
   background(0);
   text("score: "+score, 100, 100);
   text("RAINDROP GAME", 500, 100);
-  rect(mouse.x-wid/2,height-50,wid,hei);
+  rect(mouse.x-wid/2, height-50, wid, hei);
   for (int i = 0; i<count; i++) {
     drops[i].fall();         //make the raindrop fall. It should accelerate as if pulled towards the ground by earth's gravity
     drops[i].display();      //display the raindrop

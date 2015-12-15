@@ -22,7 +22,7 @@ class Raindrop {
     triangle(loc.x-diam/2, loc.y-3, loc.x+diam/2, loc.y-3, loc.x, loc.y-diam);
   }
   boolean isInContactWith(PVector direction) {
-    if (dist(loc.x, loc.y, direction.x, direction.y)<=4*diam/5){
+    if (loc.x>direction.x-wid/2&&loc.x<direction.x+wid/2&&loc.y>height-50){
       return true;
     }
     return false;
