@@ -1,6 +1,7 @@
 PVector mouse;   //declare a P
 Raindrop r;      //declare a new Raindrop called r
-
+int count = 100;
+Raindrop[] drops = new Raindrop[count];
 // On your own, create an array of Raindrop objects instead of just one
 // Use the array instead of the single object
 // You can start out by just using the single Raindrop as you test
