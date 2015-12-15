@@ -16,13 +16,13 @@ class Raindrop {
     vel.y += gravity;
   }
   void display() {
-    fill(255);
+    fill(200, 240, 255);
     noStroke();
     ellipse(loc.x, loc.y, diam, diam);
     triangle(loc.x-diam/2, loc.y-3, loc.x+diam/2, loc.y-3, loc.x, loc.y-diam);
   }
   boolean isInContactWith(PVector direction) {
-    if (dist(loc.x, loc.y, direction.x, direction.y)<=4*diam/5) {
+    if (dist(loc.x, loc.y, direction.x, direction.y)<=4*diam/5){
       return true;
     }
     return false;
