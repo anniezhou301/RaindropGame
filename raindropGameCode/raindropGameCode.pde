@@ -1,7 +1,7 @@
 PVector mouse;   //declare a P
 int count = 1;
 int score = 0;
-
+int number = 0;
 int difficulty = 0;
 Bucket bucket;
 //PImage rain; //removed because it makes things too slow
@@ -30,7 +30,7 @@ void draw() {
   text("score: "+score, 100, 100);
   text("RAINDROP GAME", 500, 100);
 
-  bucket.display();
+  bucket.display(difficulty+number*10);
   scoring();
   for (int i = 0; i<drops.size(); i++) {
     Raindrop r = drops.get(i);
@@ -47,32 +47,64 @@ void draw() {
       difficulty--;
     }
     if (r.loc.x<=0||r.loc.x>=width) {
-      r.reset();
+      r.reset();                          //resets game
     }
   }
 }
 
 void scoring() {
+  //difficulty level
   if (difficulty>10) {
     drops.add(new Raindrop(random(width), 0));
     difficulty=difficulty-10;
+    number++;
   }
+  
+  //lowers difficulty level
   if (difficulty<0) {
     if (drops.size()>0) {
       drops.remove(0);
+      number--;
     } else {
-      textSize(80);
+      textSize(80);        //you can lose if your difficulty level is less than zero
       fill(255);
       rect(100, 300, 930, 250);
       fill(0);
       text("You lose!", 400, 400);
       text("Click here to retry", 200, 500);
+
+      if (mouseX<1030&&mouseX>100&&mouseY<550&&mouseY>300) {      //you can reset the game by pressing this button
+        fill(200);
+        rect(100, 300, 930, 250);
+        fill(0);
+        text("You lose!", 400, 400);
+        text("Click here to retry", 200, 500);
+        if (mousePressed) {
+          difficulty = 0;
+          score = 0;
+          drops.add(new Raindrop(random(width), 0));
+        }
+      }
     }
+  }
+  if (score>40) {          //you win when score is greater than 40
+    for (int i = 0; i<count; i++) {
+      if (drops.size()>0) {
+        drops.remove(0);
+      }
+    }
+    textSize(80);
+    fill(255);
+    rect(100, 300, 930, 250);
+    fill(0);
+    text("You win!", 400, 400);
+    text("Click here to retry", 200, 500);
+
     if (mouseX<1030&&mouseX>100&&mouseY<550&&mouseY>300) {
       fill(200);
       rect(100, 300, 930, 250);
       fill(0);
-      text("You lose!", 400, 400);
+      text("You win!", 400, 400);
       text("Click here to retry", 200, 500);
       if (mousePressed) {
         difficulty = 0;
